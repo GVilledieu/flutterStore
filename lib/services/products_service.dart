@@ -39,4 +39,34 @@ class ProductsService {
       throw Error();
     }
   }
+
+  Future<List<Product>> fetchProductsByCategory(String category) async {
+    // Requête en GET
+    Uri uri = Uri.parse('${Config.API_URL}/products/category/$category');
+    http.Response response = await http.get(uri);
+
+    // Récupérer la réponse
+    if (response.statusCode == 200) {
+      // Convertir les données en JSON
+      List data = jsonDecode(response.body);
+
+      // Renvoyer une liste d'objets
+      return data
+          .map(
+            (dynamic value) => Product(
+            id: value['id'],
+            title: value['title'],
+            price: value['price'],
+            description: value['description'],
+            category: value['category'],
+            image: value['image'],
+            rating: value['rating']),
+      )
+          .toList();
+    }
+    // Renvoyer une erreur
+    else {
+      throw Error();
+    }
+  }
 }

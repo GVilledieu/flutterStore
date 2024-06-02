@@ -41,7 +41,7 @@ class ProductsGridWidget extends StatelessWidget {
             child: Column(
               children: [
                 const Text(
-                  'Our products',
+                  'Nos produits',
                   style: TextStyle(
                     fontSize: 30,
                   ),

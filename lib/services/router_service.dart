@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
+import 'package:store/screens/cart_screen.dart';
 import 'package:store/screens/home_screen.dart';
 import 'package:store/screens/product_details_screen.dart';
+import 'package:store/screens/products_screens.dart';
 
 class RouterService {
   // lister les routes
@@ -23,6 +25,16 @@ class RouterService {
           name: 'product-details',
           builder: (context, state) => const ProductDetailsScreen(),
         ),
+        GoRoute(
+          path: '/products',
+          name: 'products',
+          builder: (context, state) => const ProductsScreen(),
+        ),
+        GoRoute(
+          path: '/cart',
+          name: 'cart',
+          builder: (context, state) => const CartScreen(),
+        )
       ],
     );
   }

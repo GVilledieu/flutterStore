@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/category_provider.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -6,24 +9,18 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Container(
-        padding: const EdgeInsets.only(
-          top: 25,
-          left: 15,
-          right: 15,
-        ),
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CloseButton(),
-              ],
-            ),
-            Text("Drawer"),
-          ],
-        ),
+      child: Consumer<CategoryProvider>(
+        builder: (context, categoryProvider, child) {
+            return ListView.builder(
+              itemCount: categoryProvider.categories.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.category),
+                  title: Text(categoryProvider.categories[index]),
+                );
+              },
+            );
+        },
       ),
     );
   }

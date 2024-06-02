@@ -8,6 +8,7 @@ class Product {
   String title, description, category, image;
   num price;
   Map rating;
+  int quantityInCart;
 
   // constructeur
   Product({
@@ -18,5 +19,6 @@ class Product {
     required this.category,
     required this.image,
     required this.rating,
+    this.quantityInCart=0
   });
 }
